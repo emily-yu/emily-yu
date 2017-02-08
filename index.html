@@ -17,6 +17,8 @@
 </head>
 
 <body id="page-top" style = "background-color:black;bottom:0px;top:0px;text-align:fixed;">
+<!-- 
+<div class="element" style = "background-color:white; height:100px"></div> -->
 
     <section style = "height:100%; min-height: 100%; position: fixed">
         <div class="container-fluid">
@@ -27,8 +29,9 @@
                 </div>
                 <div class="col-lg-8 col-med-8 col-sm-6">
                     <!--text-->
-                    <h2 class="section-heading" style="color:gray; font-size:50px; margin:0px;text-align:left">Hi, I'm Emily</h2>
-        		    <h2 class="section-heading" style = "color:white;font-size:13px;text-align:left">Make School Student Ambassador</h2> <!--make this type out-->
+                    <h2 class="section-heading" style="color:gray; font-size:50px; text-align:left; margin-top:0px">Hi, I'm Emily</h2>
+        		    <h2 class="section-heading element" style = "color:white;font-size:13px;text-align:left; display: inline;">Make School Student Ambassador</h2>
+
         		    <hr style = "margin-left:0px"; class = "primary2">
         		    <p style = "color:white; text-align: left;">I'm interested in opportunities that will help me learn more about software engineering, programming, and/or design.</p>
 
@@ -53,5 +56,35 @@
 <script src="js/creative.min.js"></script>
 <script src="js/app.js"></script>
 <script src="https://use.fontawesome.com/efc19a65fc.js"></script>
+
+<script>
+
+
+  // $(function(){
+  //     $(".element").typed({
+  //       strings: ["Make School Student Ambassador.", "Student at Palo Alto High School."],
+  //       typeSpeed: 1
+
+  //       // callback: function () { $() }
+  //     });
+  // });
+
+$(function myfunction(){
+$(".element").typed({
+    strings: ["Make School Student Ambassador.", "Student at Palo Alto High School."],
+    typeSpeed: 3,
+    backDelay: 1000,
+    loop:true,
+    callback: function(){ 
+        
+        console.log('end'); 
+    }
+});
+});
+</script>
+
+<script src="jquery.min.js"></script>
+<script src = "typed.min.js"></script>
+<script src="typed.js"></script>
 
 </html>
