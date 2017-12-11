@@ -4,7 +4,8 @@ header,header,.header-content{
 }
 body,html{
 	height:100%;
-	width:100%
+	width:100%;
+	overflow-y: hidden;
 }
 body{
 	font-family:Arimo,'Helvetica Neue',Arial,sans-serif;
