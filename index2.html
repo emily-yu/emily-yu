@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <title>Emily Yu</title>
+</head>
+
+<style>
+#example2
+{
+    /* position: fixed; */
+    /* center the div */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left:0;
+    /* margin-left: auto; */
+    
+    /* give it dimensions */
+    min-height: 10em;
+    width: 80%;
+    /* just for example presentation */
+    top: 5em;
+    /* background-color: blue; */
+}
+
+#outer2 { /* { DEVEOPING ON 1382PX */
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    border-top: 1200px solid transparent;
+    border-bottom: 1200px solid transparent;
+    border-left: 1200px solid #203647;
+    /* margin-left: -200px; */
+    margin-top: -850px;
+}
+
+#asdf {
+    /* width: 200px; */
+    width: 100%;
+    /* margin-left: -400px; */
+
+    position: absolute;
+    left: 60px;
+    top: 300px;
+    color: white;
+}
+#asdf > h2 {
+    font-family: 'Arimo';
+    font-size: 48px;
+}
+
+</style>
+<body id = "outer2">
+    <!-- <div id = "outer2"> -->
+        <!-- <div id="example2"> -->
+        <!-- </div> -->
+        <div id = "asdf">
+            <h2>Hi, I'm Emily</h2>
+        </div>
+
+      <!-- </div>       -->
+</body>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="https://use.fontawesome.com/efc19a65fc.js"></script>
+
+<!--typing-->
+<script>
+$(function myfunction(){
+$(".element").typed({
+    strings   : [
+                 "Formerly at Tencent America.", 
+                 "Student at New York University.",
+                 "Coach at Major League Hacking.",
+                 "Logistics Chair at HackNYU.",
+                 "Founder and Lead Organizer of PalyHacks."
+                ],
+    typeSpeed : 3,
+    backDelay : 1000,
+    loop      : true
+});
+});
+</script>
+<script src = "typed.min.js"></script>
+<script src="typed.js"></script>
+
+</html>
