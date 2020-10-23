@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <script src="jquery-3.5.1.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
@@ -155,13 +157,14 @@ navbar > li:hover {
 
 #portfolio
 {
-
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
+/*
+    -webkit-animation: fadein 2s;
+       -moz-animation: fadein 2s;
+        -ms-animation: fadein 2s;
+         -o-animation: fadein 2s;
             animation: fadein 2s;
-            
+            */
+
 
     max-width: 1300px;
     position: fixed;
@@ -228,12 +231,13 @@ navbar > li:hover {
 
 <body id = "outer2">
     <navbar>
-        <li>resume</li>
-        <li>portfolio</li>
-        <li>contact</li>
+        <li><a href = "index2.html">home</a></li>
+        <li><a href = "./portfolio.html">portfolio</a></li>
+        <li><a href = "./contact.html">contact</a></li>
+        <li><a href = "resume.pdf">resume</a></li>
     </navbar>
-
-    <div id="portfolio" class="row">
+    
+    <div id="portfolio" class="row w3-animate-left">
         <div id = "leftcol" class = "col-lg-3 col-med-3 col-sm-3">
             <h3>filter by</h3>
             <div>
