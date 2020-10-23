@@ -37,7 +37,28 @@
             0% {opacity: 1;}
             100% {opacity: 0;}
          }
+         @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 #example2
 {
     /* position: fixed; */
@@ -80,6 +101,12 @@ when closing: *more important
     border-left: 1200px solid #203647;
     /* margin-left: -200px; */
     margin-top: -650px;
+
+    -webkit-animation: fadein 2s;
+       -moz-animation: fadein 2s;
+        -ms-animation: fadein 2s;
+         -o-animation: fadein 2s;
+            animation: fadein 2s;
 }
 
 #asdf {

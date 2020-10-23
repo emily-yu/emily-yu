@@ -29,6 +29,29 @@
   }
 }
 
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 #example2
 {
     /* position: fixed; */
@@ -70,6 +93,11 @@ when closing: *more important
     border-bottom: 1200px solid #12232E;
     border-left: 1200px solid #203647;
     /* margin-left: -200px; */
+    -webkit-animation: fadein 2s;
+       -moz-animation: fadein 2s;
+        -ms-animation: fadein 2s;
+         -o-animation: fadein 2s;
+            animation: fadein 2s;
     /* margin-top: -650px; */
 }
 
@@ -201,7 +229,7 @@ navbar > li:hover {
     </navbar>
 
     <div class="faux-borders"></div>
-    <div id = "asdf"> <!-- class="w3-animate-left" -->
+    <div id = "asdf" class="w3-animate-right"> <!-- class="w3-animate-left" -->
         <!-- <h2>Hi, I'm Emily</h2>
         <p class="typed big element"></p>
         <br> -->
