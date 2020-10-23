@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Courier" rel="stylesheet">
@@ -17,6 +19,16 @@
 </head>
 
 <style>
+@keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
 #example2
 {
     /* position: fixed; */
@@ -38,6 +50,7 @@
 
 html {
     background-color: #12232E;
+    overflow: hidden;
 }
 
 /* 
@@ -57,18 +70,20 @@ when closing: *more important
     border-bottom: 1200px solid #12232E;
     border-left: 1200px solid #203647;
     /* margin-left: -200px; */
-    margin-top: -850px;
+    margin-top: -650px;
 }
 
 #asdf {
+    padding: 0 !important;
+    text-align: left !important;
     /* width: 200px; */
-    width: 900px;
+    max-width: 900px;
     /* margin-left: -400px; */
 
     position: absolute;
     left: 60px;
     /* top: 300px; */
-    bottom: 385px;
+    bottom: 265px;
     color: white;
 }
 #asdf > h2 {
@@ -116,8 +131,11 @@ navbar > li:hover {
 }
 
 #navbutton {
-    margin-top: -20px;
+    /* margin-top: -20px;
     right: 19px;
+    position: fixed; */
+    right: 19px;
+    top: 300px;
     position: fixed;
 }
 #navbutton > a > #navicon {
@@ -133,7 +151,7 @@ navbar > li:hover {
         <li>contact</li>
     </navbar>
 
-    <div id = "asdf">
+    <div id = "asdf" class="w3-animate-left">
         <h2>Hi, I'm Emily</h2>
         <p class="typed big element"></p>
         <br>
