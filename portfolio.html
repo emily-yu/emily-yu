@@ -76,7 +76,8 @@ when closing: *more important
 3) switch pages without removing the navbar (render the page only with the navbar) so it looks like smooth transition
 */
 #outer2 { /* { DEVEOPING ON 1382PX */
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll !important;
     width: 0;
     height: 0;
     /* border-top: 1200px solid #12232E;
@@ -183,7 +184,8 @@ navbar > li:hover {
 }
 
 #rightcol {
-
+    overflow: scroll;
+    height: 700px;
 }
 #rightcol > img {
     object-fit: cover;
