@@ -204,17 +204,17 @@ navbar > li:hover {
         <div id = "leftcol" class = "col-lg-3 col-med-3 col-sm-3">
             <h3>filter by</h3>
             <div>
-                <button type="button" class="btn btn-primary">Primary</button>
-                <button type="button" class="btn btn-primary">Primary</button>
-                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-primary">opencv</button>
+                <button type="button" class="btn btn-primary">website</button>
+                <button type="button" class="btn btn-primary">ios</button>
             </div>
         </div>
         <div id = "rightcol" class = "col-lg-9 col-med-9 col-sm-9">
-            <img src = "img/desmosart.png">
-            <img src = "img/leaguevoice.png">
-            <img src = "img/piccoku.png">
-            <img src = "img/sketchc.png">
-            <img src = "img/stickerstorm.png">
+            <img class = "project" src = "img/desmosart.png">
+            <img class = "project" src = "img/leaguevoice.png">
+            <img class = "project" src = "img/piccoku.png">
+            <img class = "project" src = "img/sketchc.png">
+            <img class = "project" src = "img/stickerstorm.png">
         </div>
     </div>
     <div id = "navbutton">
@@ -244,6 +244,128 @@ $(".element").typed({
 });
 });
 </script>
+
+<script>
+const portfolioItems = [
+    {
+        "image": "desmosart.png",
+        "link": "https://devpost.com/software/desmos-art",
+        "tags": ["opencv", "web ui", "javascript", "python", "html", "css"]
+    },
+    {
+        "image": "leaguevoice.png",
+        "link": "https://leaguevoice.github.io/",
+        "tags": ["javascript", "dialogflow", "firebase"]
+    },
+    {
+        "image": "piccoku.png",
+        "link": "https://devpost.com/software/piccoku",
+        "tags": ["ios", "swift", "website", "html", "css", "firebase"]
+    },
+    {
+        "image": "sketchc.png",
+        "link": "https://devpost.com/software/sketch-c",
+        "tags": ["three.js", "javascript", "bootstrap", "website"]
+    },
+    {
+        "image": "stickerstorm.png",
+        "link": "https://devpost.com/software/stickerstorm",
+        "tags": ["opencv", "python"]
+    }
+]
+
+let tagList = []
+let selectedTag = []
+document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("asdf")
+    // let selectedTag = []
+
+    // add all unique items to tag list
+    for (const item of portfolioItems) {
+        for (const tag of item["tags"]) {
+            if (!tagList.includes(tag)) {
+                tagList.push(tag)
+            }
+        }
+    }
+    console.log(tagList)
+
+    
+    // for(var i = 0; i < productAttr.length; i++) {
+    //     productAttr[i].style.top = "-90px";
+    // }
+});
+
+var tag = document.getElementsByClassName("btn");
+var myFunction2 = function(e) {
+    console.log("clicked", e.target.innerHTML.toLowerCase())
+    var tag = e.target.innerHTML.toLowerCase()
+
+    // check if already in tag list
+    if (selectedTag.includes(tag)) {
+        var index = selectedTag.indexOf(tag); // remove from array
+        selectedTag.splice(index, 1);
+    }
+    else {
+        selectedTag.push(tag) // add to array
+    }
+    
+    // reprocess all hidden properties for features
+    var elements = document.getElementsByClassName("project");
+    // if (selectedTag.length != 0) { // need to filter out based on
+    //     for (let elem of elements) {
+    //         elem.setAttribute("hidden", true);
+    //     }
+    // }
+    // else { 
+        // equals 0, need to show all 
+    for (let elem of elements) {
+        var n = elem.src.lastIndexOf('/');
+        var result = elem.src.substring(n + 1);
+        console.log(result)
+        console.log(elem)
+        var item = portfolioItems.filter(obj => {
+            return obj.image === result
+            })
+            console.log(item)
+        if (item[0]["tags"].includes(tag)) {
+            // elem.setAttribute("hidden", );
+            elem.removeAttribute("hidden")
+        }
+        else {
+            elem.setAttribute("hidden", true);
+        }
+    }
+    // }
+};
+Array.from(tag).forEach(function(element) {
+    element.addEventListener('click', myFunction2);
+});
+
+
+
+
+
+var elements = document.getElementsByClassName("project");
+var myFunction = function() {
+    var attribute = this.getAttribute("src");
+
+    // console.log(portfolioItems[attribute])
+    const dirExtension = "img/"
+    // console.log(dirExtension + portfolioItems["image"],attribute)
+    for (let item of portfolioItems) {
+        console.log(dirExtension + item["image"],attribute)
+        if (dirExtension + item["image"] == attribute) {
+            window.open(item["link"])
+        }
+    }
+
+};
+Array.from(elements).forEach(function(element) {
+    element.addEventListener('click', myFunction);
+});
+</script>
+
 <script src = "typed.min.js"></script>
 <script src="typed.js"></script>
 
