@@ -53,11 +53,11 @@ when closing: *more important
     overflow: hidden;
     width: 0;
     height: 0;
-    border-top: 1200px solid #12232E;
+    /* border-top: 1200px solid #12232E;
     border-bottom: 1200px solid #12232E;
-    border-left: 1200px solid #203647;
+    border-left: 1200px solid #203647; */
     /* margin-left: -200px; */
-    margin-top: -850px;
+    /* margin-top: -850px; */
 }
 
 #asdf {
@@ -116,9 +116,13 @@ navbar > li:hover {
 }
 
 #navbutton {
-    margin-top: -20px;
+    /* margin-top: -20px; */
     right: 19px;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 #navbutton > a > #navicon {
     transition: 0.5s;
@@ -155,6 +159,9 @@ navbar > li:hover {
     /* margin: 3px; */
     margin-top: 3px;
     margin-left: 3px;
+}
+#rightcol > img:hover {
+    box-shadow: 2em;
 }
 
 #leftcol {
@@ -207,6 +214,9 @@ navbar > li:hover {
             <img src = "img/me.jpg">
             <img src = "img/me.jpg">
         </div>
+    </div>
+    <div id = "navbutton">
+        <a><i id = "navicon" class = "fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
     </div>
 </body>
 
