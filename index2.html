@@ -39,6 +39,16 @@
 html {
     background-color: #12232E;
 }
+
+/* 
+when opening: 
+1) do the opposite of the bottom
+
+when closing: *more important
+1) lower margin-left of #outer2 until the triangle is gone. 
+2) decrease bottom of #asdf until its negative
+3) switch pages without removing the navbar (render the page only with the navbar) so it looks like smooth transition
+*/
 #outer2 { /* { DEVEOPING ON 1382PX */
     overflow: hidden;
     width: 0;
@@ -57,7 +67,8 @@ html {
 
     position: absolute;
     left: 60px;
-    top: 300px;
+    /* top: 300px; */
+    bottom: 385px;
     color: white;
 }
 #asdf > h2 {
