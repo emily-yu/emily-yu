@@ -8,47 +8,176 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/creative.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courier" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <title>Emily Yu</title>
 </head>
 
-<body id="page-top" style = "background-color:black;bottom:0px;top:0px;text-align:fixed;">
-    <div style = "height: 100%;
-    position: relative;
-    background-color: blue;
-    width: 1000px;">
-    <section style = "height:100%; min-height: 100%; /*position: fixed*/;">
-            <div class="container-fluid">
-                <!--picture-->
-                <div class="row">
-                    <div class = "col-lg-3 col-med-3 col-sm-6">
-                        <center><img src="img/me.jpg" style = "height:100%; width: 100%;  border: 5px double darkgreen; margin-bottom:20px"></img></center>
-                    </div>
-                    <div class="col-lg-8 col-med-8 col-sm-6">
-                        <!--text-->
-                        <h2 class="section-heading" style="color:gray; font-size:50px; text-align:left; margin-top:0px">Hi, I'm Emily</h2>
-                        <h2 class="section-heading element" style = "color:white;font-size:13px;text-align:left; display: inline;"></h2>
+<style>
+@keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
 
-                        <hr style = "margin-left:0px"; class = "primary2">
-                        <p style = "color:white; text-align: left;">I'm interested in opportunities that involve applications of programming,</br> software development, and design.</p>
+  to {
+    transform: translateX(100%);
+  }
+}
+@-webkit-keyframes fadeOut {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+         }
+         
+         @keyframes fadeOut {
+            0% {opacity: 1;}
+            100% {opacity: 0;}
+         }
 
-                        <!--icons-->
-                        <div style = "margin-left:0%">
-                            <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
-                            <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+#example2
+{
+    /* position: fixed; */
+    /* center the div */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left:0;
+    /* margin-left: auto; */
+    
+    /* give it dimensions */
+    min-height: 10em;
+    width: 80%;
+    /* just for example presentation */
+    top: 5em;
+    /* background-color: blue; */
+}
 
-                            <a href = "resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                            <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                            <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                            <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-    </section>
+html {
+    background-color: #12232E;
+    overflow: hidden;
+}
+
+/* 
+when opening: 
+1) do the opposite of the bottom
+
+when closing: *more important
+1) lower margin-left of #outer2 until the triangle is gone. 
+2) decrease bottom of #asdf until its negative
+3) switch pages without removing the navbar (render the page only with the navbar) so it looks like smooth transition
+*/
+#outer2 { /* { DEVEOPING ON 1382PX */
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    border-top: 1200px solid #12232E;
+    border-bottom: 1200px solid #12232E;
+    border-left: 1200px solid #203647;
+    /* margin-left: -200px; */
+    margin-top: -650px;
+}
+
+#asdf {
+    padding: 0 !important;
+    text-align: left !important;
+    /* width: 200px; */
+    max-width: 900px;
+    /* margin-left: -400px; */
+
+    position: absolute;
+    left: 60px;
+    /* top: 300px; */
+    bottom: 265px;
+    color: white;
+}
+#asdf > h2 {
+    font-family: 'Arimo';
+    font-size: 48px;
+}
+#asdf > .typed {
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align:left;
+    display: inline;
+    font-size:20px;
+}
+#asdf > .big {
+    font-size:20px;
+}
+
+navbar {
+    left: 0;
+    width: 100%;
+    position: fixed;
+    justify-content: center;
+    top: 10px;
+    list-style-type: none;
+    color: white;
+    display: flex;
+}
+navbar > li {
+    margin: 20px;
+    font-family: 'Courgette';
+    font-size: 18px;
+    opacity: 50%;
+    transition: 0.5s;
+}
+navbar > li:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+#icons {
+    margin-top: 20px;
+}
+#icons > a {
+    transition: 0.5s;
+}
+
+#navbutton {
+    /* margin-top: -20px;
+    right: 19px;
+    position: fixed; */
+    right: 19px;
+    top: 300px;
+    position: fixed;
+}
+#navbutton > a > #navicon {
+    transition: 0.5s;
+    font-size: 3em;
+}
+</style>
+
+<body id = "outer2">
+    <navbar>
+        <li><a href = "index2.html">home</a></li>
+        <li><a href = "./portfolio.html">portfolio</a></li>
+        <li><a href = "./contact.html">contact</a></li>
+        <li><a href = "resume.pdf">resume</a></li>
+    </navbar>
+
+    <div id = "asdf" class="w3-animate-left">
+        <h2>Hi, I'm Emily</h2>
+        <p class="typed big element"></p>
+        <br>
+        <p class = "typed">I’m interested in projects that involve applications of programming, software development, and design. </p>
+        <div id = "icons">
+            <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
+            <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+
+            <a href = "resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <div id = "navbutton">
+        <a><i id = "navicon" class = "fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
     </div>
 </body>
 
@@ -62,11 +191,11 @@
 $(function myfunction(){
 $(".element").typed({
     strings   : [
-                 "Formerly at Tencent America.", 
                  "Student at New York University.",
                  "Coach at Major League Hacking.",
                  "Logistics Chair at HackNYU.",
-                 "Founder and Lead Organizer of PalyHacks."
+                 "Formerly at Tencent America.", 
+                 "Former Founder and Lead Organizer of PalyHacks."
                 ],
     typeSpeed : 3,
     backDelay : 1000,
