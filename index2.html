@@ -11,6 +11,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Courier" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <title>Emily Yu</title>
 </head>
@@ -74,28 +75,58 @@ html {
     font-size:20px;
 }
 
+navbar {
+    left: 0;
+    width: 100%;
+    position: fixed;
+    justify-content: center;
+    top: 10px;
+    list-style-type: none;
+    color: white;
+    display: flex;
+}
+navbar > li {
+    margin: 20px;
+    font-family: 'Courgette';
+    font-size: 18px;
+    opacity: 50%;
+    transition: 0.5s;
+}
+navbar > li:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+#icons {
+    margin-top: 20px;
+}
+#icons > a {
+    transition: 0.5s;
+}
 </style>
+
 <body id = "outer2">
-    <!-- <div id = "outer2"> -->
-        <!-- <div id="example2"> -->
-        <!-- </div> -->
-        <div id = "asdf">
-            <h2>Hi, I'm Emily</h2>
-            <p class="typed big element"></p>
-            <br>
-            <p class = "typed">I’m interested in projects that involve applications of programming, software development, and design. </p>
-            <div style = "margin-top: 20px">
-                <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
-                <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+    <navbar>
+        <li>resume</li>
+        <li>portfolio</li>
+        <li>contact</li>
+    </navbar>
 
-                <a href = "resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-                <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
-            </div>
+    <div id = "asdf">
+        <h2>Hi, I'm Emily</h2>
+        <p class="typed big element"></p>
+        <br>
+        <p class = "typed">I’m interested in projects that involve applications of programming, software development, and design. </p>
+        <div id = "icons">
+            <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
+            <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+
+            <a href = "resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
+            <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
         </div>
-
-      <!-- </div>       -->
+    </div>
 </body>
 
 <script src="vendor/jquery/jquery.min.js"></script>
