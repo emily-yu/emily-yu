@@ -21,23 +21,15 @@
 <style>
 @keyframes slidein {
   from {
-    transform: translateX(0%);
+    transform: translateX(50%);
   }
 
   to {
     transform: translateX(100%);
   }
 }
-@-webkit-keyframes fadeOut {
-            0% {opacity: 1;}
-            100% {opacity: 0;}
-         }
-         
-         @keyframes fadeOut {
-            0% {opacity: 1;}
-            100% {opacity: 0;}
-         }
-         @keyframes fadein {
+
+@keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
@@ -59,6 +51,7 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
 #example2
 {
     /* position: fixed; */
@@ -79,7 +72,7 @@
 
 
 html {
-    background-color: #12232E;
+    background-color: #203647;
     overflow: hidden;
 }
 
@@ -96,31 +89,35 @@ when closing: *more important
     overflow: hidden;
     width: 0;
     height: 0;
-    border-top: 1200px solid #12232E;
+    /* border-top: 1200px solid #12232E;
     border-bottom: 1200px solid #12232E;
     border-left: 1200px solid #203647;
     /* margin-left: -200px; */
-    margin-top: -650px;
-
     -webkit-animation: fadein 2s;
        -moz-animation: fadein 2s;
         -ms-animation: fadein 2s;
          -o-animation: fadein 2s;
             animation: fadein 2s;
+    /* margin-top: -650px; */
 }
 
 #asdf {
+    /*
     padding: 0 !important;
     text-align: left !important;
-    /* width: 200px; */
     max-width: 900px;
-    /* margin-left: -400px; */
 
     position: absolute;
     left: 60px;
-    /* top: 300px; */
     bottom: 265px;
     color: white;
+    */
+    text-align: center;
+    color: white;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 300px;
+    left: 50%;
 }
 #asdf > h2 {
     font-family: 'Arimo';
@@ -139,8 +136,12 @@ when closing: *more important
 
 navbar {
     left: 0;
+    height: 300px;
     width: 100%;
+    padding-top: 10px;
+    margin-top: -10px;
     position: fixed;
+    background-color: #12232E;
     justify-content: center;
     top: 10px;
     list-style-type: none;
@@ -178,6 +179,45 @@ navbar > li:hover {
     transition: 0.5s;
     font-size: 3em;
 }
+
+.faux-borders {
+    width: 0;
+    height: 0;
+    border-left: 1200px solid #203647;
+    border-right: 1200px solid #203647;
+    border-top: 700px solid #12232E;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -99;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: #c4c4c4;
+    border-radius: 11px;
+    border-width: 2px;
+    opacity: 50%;
+    font-family: 'Courier';
+    text-transform: lowercase;
+    transition: 0.5s;
+    width: 48%;
+}
+.btn-primary > a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.btn-primary:hover {
+    border-color: #c4c4c4;
+    background-color: #12232E;
+    opacity: 75%;
+}
+.row {
+    margin-top: 10px;
+}
 </style>
 
 <body id = "outer2">
@@ -188,24 +228,21 @@ navbar > li:hover {
         <li><a href = "resume.pdf">resume</a></li>
     </navbar>
 
-    <div id = "asdf" class="w3-animate-left">
-        <h2>Hi, I'm Emily</h2>
+    <div class="faux-borders"></div>
+    <div id = "asdf" class="w3-animate-right"> <!-- class="w3-animate-left" -->
+        <!-- <h2>Hi, I'm Emily</h2>
         <p class="typed big element"></p>
-        <br>
-        <p class = "typed">I’m interested in projects that involve applications of programming, software development, and design. </p>
-        <div id = "icons">
-            <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
-            <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-
-            <a href = "resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
+        <br> -->
+        <p class = "typed">Interested in working together? </p>
+        <div class = "row">
+            <button type="button" class="btn btn-primary"><a href = "mailto:eyudeveloper@gmail.com">email</a></button>
+            <button type="button" class="btn btn-primary"><a href = "resume.pdf">resume</a></button>
         </div>
     </div>
     <!-- <div id = "navbutton">
         <a><i id = "navicon" class = "fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
     </div> -->
+    <!-- </div> -->
 </body>
 
 <script src="vendor/jquery/jquery.min.js"></script>
