@@ -5,4 +5,4 @@ Here's a bit more about me.
 - A sports photographer shooting badminton & food, the fastest sport of them all.
 - A hobbyist content creator and storyteller, always interested in seeing new perspectives. 
 
-Prev. swe @ TLDR Media, @ Confluent - hackathon lead @ HackNYU, @ PalyHacks
+Prev. SWE @ TLDR Media, @ Confluent - Organizing Hackathons @ HackNYU, @ PalyHacks
