@@ -362,15 +362,21 @@
         }
 
         /* ===== PHOTO STRIPS ===== */
-        .photo-strips-chevron {
-            width: 100%;
-            height: 50px;
-            background: #e8e8e8;
-            clip-path: polygon(0 0, 50% 100%, 100% 0);
-        }
         .photo-strips-section {
             background: #e8e8e8;
-            padding: 40px 16px 60px;
+            padding: 100px 16px 60px;
+            position: relative;
+        }
+        .photo-strips-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            z-index: 1;
         }
         .photo-strips {
             max-width: 1400px;
@@ -413,34 +419,16 @@
             .carousel-card {
                 flex: 0 0 calc(100% - 0px);
             }
-            .collage-container {
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            .collage-photo {
-                position: static;
-                width: 100% !important;
-                height: auto !important;
-                box-shadow: none;
-            }
-            .collage-photo img {
-                height: auto;
-                aspect-ratio: 3/2;
-            }
-            .collage-photo-1 img {
-                aspect-ratio: 2/3;
-            }
-            .collage-text {
-                position: static;
-                text-align: left !important;
-                margin-bottom: 16px;
-            }
-            .collage-text-tr {
-                order: -1;
-            }
             .featured-events { padding: 40px 5%; }
+            .collage-container {
+                height: 300px;
+            }
+            .collage-text h3 {
+                font-size: 0.85rem;
+            }
+            .collage-text p {
+                font-size: 0.75rem;
+            }
             .photo-strip-row {
                 flex-wrap: wrap;
             }
@@ -518,13 +506,13 @@
 <section class="featured-events">
     <div class="collage-container">
         <div class="collage-photo collage-photo-1">
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/34fb474d-da7b-4be1-b17a-fdeff2381345/DSC01991.jpeg?format=750w" alt="Bay Badminton Championships">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/5c27a32f-e135-4d0a-b683-107cf5e5b104/Screenshot+2024-08-06+at+5.04.33+PM.png?format=750w" alt="Bay Badminton Championships">
         </div>
         <div class="collage-photo collage-photo-2">
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/53d00efd-1548-4dfe-86d5-cce8912af7ea/397613470_3525324764403034_4071029124127877228_n.jpg?format=750w" alt="Tournament match">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/d53af2d4-0f15-4486-b723-6466d1a41b46/406268172_3543332365935607_3116563468856555956_n.jpg?format=750w" alt="Tournament match">
         </div>
         <div class="collage-photo collage-photo-3">
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0adf295b-4f0a-4c6a-bad4-e33b294e6c46/_DSC2669.jpg?format=750w" alt="Riaan NJ Open action">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/5b2eb423-f600-4aab-a153-90834c13c655/406186681_3543332289268948_6217540274298260496_n.jpg?format=750w" alt="Riaan NJ Open action">
         </div>
         <div class="collage-text collage-text-bl">
             <h3>Bay Badminton Championships</h3>
@@ -651,7 +639,6 @@
 </section>
 
 <!-- ===== PHOTO STRIPS ===== -->
-<div class="photo-strips-chevron"></div>
 <section class="photo-strips-section">
     <div class="photo-strips">
         <!-- Row 1: 7 photos -->
