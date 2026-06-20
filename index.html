@@ -1,235 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <!-- <link rel="stylesheet" type="text/css" href="css/creative.min.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Courier" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <title>Emily Yu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #12232E;
+            --bg-secondary: #203647;
+            --text-primary: #e8edf2;
+            --text-muted: #8fa3b8;
+            --accent: #4da8da;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        /* --- Loader --- */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .loader.done {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-bar {
+            width: 48px;
+            height: 2px;
+            background: var(--text-muted);
+            border-radius: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .loader-bar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            animation: load 1s ease-in-out infinite;
+            transform-origin: left;
+        }
+        @keyframes load {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); transform-origin: left; }
+            51% { transform-origin: right; }
+            100% { transform: scaleX(0); transform-origin: right; }
+        }
+
+        /* --- Main content --- */
+        .page {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 clamp(2rem, 8vw, 10rem);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+        .page.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content {
+            max-width: 560px;
+        }
+
+        /* --- Background shape --- */
+        .bg-shape {
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 140vh;
+            background: var(--bg-secondary);
+            clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+            opacity: 0;
+            transition: opacity 1.2s ease 0.4s;
+        }
+        .bg-shape.visible {
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 440px;
+        }
+
+        /* --- Links --- */
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.02em;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0.25rem;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .links a:hover {
+            color: var(--text-primary);
+        }
+        .links a:hover::after {
+            width: 100%;
+        }
+
+        .resume-link {
+            margin-top: 2rem;
+        }
+        .resume-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.02em;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .resume-link a:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .resume-link a svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 640px) {
+            .page {
+                padding: 0 1.5rem;
+                align-items: flex-end;
+                padding-bottom: 4rem;
+            }
+            .bg-shape {
+                width: 80vw;
+                right: -20%;
+            }
+            .links {
+                gap: 1.2rem;
+            }
+        }
+    </style>
 </head>
-
-<style>
-@keyframes slidein {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(100%);
-  }
-}
-@-webkit-keyframes fadeOut {
-            0% {opacity: 1;}
-            100% {opacity: 0;}
-         }
-         
-         @keyframes fadeOut {
-            0% {opacity: 1;}
-            100% {opacity: 0;}
-         }
-         @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-#example2
-{
-    /* position: fixed; */
-    /* center the div */
-    right: 0;
-    left: 0;
-    margin-right: auto;
-    margin-left:0;
-    /* margin-left: auto; */
-    
-    /* give it dimensions */
-    min-height: 10em;
-    width: 80%;
-    /* just for example presentation */
-    top: 5em;
-    /* background-color: blue; */
-}
-
-
-html {
-    background-color: #12232E;
-    overflow: hidden;
-}
-
-/* 
-when opening: 
-1) do the opposite of the bottom
-
-when closing: *more important
-1) lower margin-left of #outer2 until the triangle is gone. 
-2) decrease bottom of #asdf until its negative
-3) switch pages without removing the navbar (render the page only with the navbar) so it looks like smooth transition
-*/
-#outer2 { /* { DEVEOPING ON 1382PX */
-    overflow: hidden;
-    width: 0;
-    height: 0;
-    border-top: 1200px solid #12232E;
-    border-bottom: 1200px solid #12232E;
-    border-left: 1200px solid #203647;
-    /* margin-left: -200px; */
-    margin-top: -650px;
-
-    -webkit-animation: fadein 2s;
-       -moz-animation: fadein 2s;
-        -ms-animation: fadein 2s;
-         -o-animation: fadein 2s;
-            animation: fadein 2s;
-}
-
-#asdf {
-    padding: 0 !important;
-    text-align: left !important;
-    /* width: 200px; */
-    max-width: 900px;
-    /* margin-left: -400px; */
-
-    position: absolute;
-    left: 60px;
-    /* top: 300px; */
-    bottom: 265px;
-    color: white;
-}
-#asdf > h2 {
-    font-family: 'Arimo';
-    font-size: 48px;
-}
-#asdf > .typed {
-    color:white;
-    font-family: 'Courier New', Courier, monospace;
-    text-align:left;
-    display: inline;
-    font-size:20px;
-}
-#asdf > .big {
-    font-size:20px;
-}
-
-navbar {
-    left: 0;
-    width: 100%;
-    position: fixed;
-    justify-content: center;
-    top: 10px;
-    list-style-type: none;
-    color: white;
-    display: flex;
-}
-navbar > li {
-    margin: 20px;
-    font-family: 'Courgette';
-    font-size: 18px;
-    opacity: 50%;
-    transition: 0.5s;
-}
-navbar > li:hover {
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-}
-
-#icons {
-    margin-top: 20px;
-}
-#icons > a {
-    transition: 0.5s;
-}
-
-#navbutton {
-    /* margin-top: -20px;
-    right: 19px;
-    position: fixed; */
-    right: 19px;
-    top: 300px;
-    position: fixed;
-}
-#navbutton > a > #navicon {
-    transition: 0.5s;
-    font-size: 3em;
-}
-</style>
-
-<body id = "outer2">
-    <navbar>
-<!--         <li><a href = "index.html">home</a></li> -->
-<!--         <li><a href = "./portfolio.html">portfolio</a></li> -->
-<!--         <li><a href = "./contact.html">contact</a></li> -->
-        <li><a href = "EmilyYu_Resume.pdf">resume</a></li>
-    </navbar>
-
-    <div id = "asdf" class="w3-animate-left">
-        <h2>Hi, I'm Emily</h2>
-        <p class="typed big element"></p>
-        <br>
-        <p class = "typed">I’m interested in projects that involve applications of programming, software development, and design. </p>
-        <div id = "icons">
-            <a href = "mailto:eyudeveloper@gmail.com"><i class="fa fa-envelope-open fa-2x" aria-hidden="true" style = "margin-right:10px;"></i></a><!--aria-hidden="true"-->
-            <a href = "https://github.com/emily-yu"><i class="fa fa-github fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-
-            <a href = "EmilyYu_Resume.pdf"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://medium.com/@emilyyu3"><i class="fa fa-medium fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://www.linkedin.com/in/emilyyu3/"><i class="fa fa-linkedin fa-2x" aria-hidden="true" style = "margin-right: 10px"></i></a>
-            <a href = "https://oxstormthunder.deviantart.com/"><i class="fa fa-deviantart fa-2x" aria-hidden="true"></i></a>
-        </div>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-bar"></div>
     </div>
-    <!-- <div id = "navbutton">
-        <a><i id = "navicon" class = "fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
-    </div> -->
+
+    <div class="bg-shape" id="bg"></div>
+
+    <main class="page" id="page">
+        <div class="content">
+            <h1>Emily Yu</h1>
+            <p class="tagline">Full-stack developer. Interested in projects that apply programming, software development, and design to meaningful causes.</p>
+            <nav class="links">
+                <a href="https://github.com/emily-yu">github</a>
+                <a href="https://www.linkedin.com/in/emilyyu3/">linkedin</a>
+                <a href="mailto:eyudeveloper@gmail.com">email</a>
+            </nav>
+            <div class="resume-link">
+                <a href="EmilyYu_Resume.pdf">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
+                    </svg>
+                    resume
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.getElementById('loader').classList.add('done');
+                document.getElementById('page').classList.add('visible');
+                document.getElementById('bg').classList.add('visible');
+            }, 800);
+        });
+    </script>
 </body>
-
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="https://use.fontawesome.com/efc19a65fc.js"></script>
-
-<!--typing-->
-<script>
-$(function myfunction(){
-$(".element").typed({
-    strings   : [
-                 "Full-Stack Developer.",
-                 "Coach at Major League Hacking.",
-                 "Formerly Head of Logistics at HackNYU and Director of PalyHacks.",
-                 "I strive to apply myself to causes that have a meaningful impact on people. If you're interested in working together, let's talk.",
-                ],
-    typeSpeed : 3,
-    backDelay : 1000,
-    loop      : true
-});
-});
-</script>
-<script src = "typed.min.js"></script>
-<script src="typed.js"></script>
-
 </html>
