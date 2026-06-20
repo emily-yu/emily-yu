@@ -118,90 +118,71 @@
             fill: none;
         }
 
-        /* ===== FEATURED EVENTS ===== */
+        /* ===== FEATURED EVENTS (COLLAGE) ===== */
         .featured-events {
-            padding: 80px 5% 80px;
+            padding: 60px 5% 80px;
         }
-
-        /* --- Bay Badminton Championships --- */
-        .event-bay {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 80px;
-            align-items: start;
+        .collage-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 540px;
         }
-        .event-bay .event-images {
-            display: grid;
-            grid-template-columns: 1fr 1.8fr;
-            grid-template-rows: auto auto;
-            gap: 8px;
+        .collage-photo {
+            position: absolute;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         }
-        .event-bay .event-images .img-tall {
-            grid-row: 1 / 3;
-        }
-        .event-bay .event-images img {
+        .collage-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 2px;
         }
-        .event-bay .event-info {
-            padding-left: 24px;
+        .collage-photo-1 {
+            left: 8%;
+            top: 0;
+            width: 22%;
+            height: 78%;
+            z-index: 1;
         }
-        .event-bay .event-info h3 {
+        .collage-photo-2 {
+            left: 26%;
+            top: 18%;
+            width: 35%;
+            height: 52%;
+            z-index: 2;
+        }
+        .collage-photo-3 {
+            right: 8%;
+            bottom: 0;
+            width: 28%;
+            height: 55%;
+            z-index: 3;
+        }
+        .collage-text {
+            position: absolute;
+            z-index: 4;
+        }
+        .collage-text h3 {
             font-family: var(--font-heading);
             font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             margin-bottom: 8px;
         }
-        .event-bay .event-info p {
+        .collage-text p {
             font-size: 0.85rem;
             color: var(--color-text-muted);
             line-height: 1.6;
         }
-
-        /* --- Riaan NJ Open --- */
-        .event-riaan {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            align-items: start;
+        .collage-text-bl {
+            bottom: 8%;
+            left: 3%;
         }
-        .event-riaan .event-images {
-            display: grid;
-            grid-template-columns: 1.8fr 1fr;
-            grid-template-rows: auto auto;
-            gap: 8px;
-            order: 1;
-        }
-        .event-riaan .event-images .img-tall {
-            grid-row: 1 / 3;
-            grid-column: 2;
-        }
-        .event-riaan .event-images img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-        .event-riaan .event-info {
+        .collage-text-tr {
+            top: 5%;
+            right: 3%;
             text-align: right;
-            padding-right: 24px;
-            order: 2;
-        }
-        .event-riaan .event-info h3 {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            margin-bottom: 8px;
-        }
-        .event-riaan .event-info p {
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            line-height: 1.6;
         }
 
         /* ===== TOURNAMENT CAROUSEL ===== */
@@ -380,44 +361,44 @@
             text-decoration: underline;
         }
 
-        /* ===== PHOTO GRID (GALLERY STRIPS) ===== */
-        .photo-grid-section {
-            background: var(--color-dark-bg);
-            padding: 40px 24px;
+        /* ===== PHOTO STRIPS ===== */
+        .photo-strips-chevron {
+            width: 100%;
+            height: 50px;
+            background: #e8e8e8;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
         }
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 200px;
-            gap: 8px;
+        .photo-strips-section {
+            background: #e8e8e8;
+            padding: 40px 16px 60px;
+        }
+        .photo-strips {
             max-width: 1400px;
             margin: 0 auto;
         }
-        .photo-grid img {
+        .photo-strip-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .photo-strip-item {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .photo-strip-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 2px;
-            transition: opacity 0.3s;
-        }
-        .photo-grid img:hover { opacity: 0.85; }
-        .photo-grid .span-wide {
-            grid-column: span 2;
+            display: block;
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .event-bay,
-            .event-riaan {
-                grid-template-columns: 1fr;
+            .collage-container {
+                height: 400px;
             }
-            .event-riaan .event-info {
-                order: -1;
-                text-align: left;
-                padding: 0;
-            }
-            .event-bay .event-info {
-                padding-left: 0;
+            .collage-text h3 {
+                font-size: 1rem;
             }
             .about-section {
                 grid-template-columns: 1fr;
@@ -432,15 +413,41 @@
             .carousel-card {
                 flex: 0 0 calc(100% - 0px);
             }
-            .photo-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 150px;
+            .collage-container {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
             }
-            .photo-grid .span-wide {
-                grid-column: span 1;
+            .collage-photo {
+                position: static;
+                width: 100% !important;
+                height: auto !important;
+                box-shadow: none;
+            }
+            .collage-photo img {
+                height: auto;
+                aspect-ratio: 3/2;
+            }
+            .collage-photo-1 img {
+                aspect-ratio: 2/3;
+            }
+            .collage-text {
+                position: static;
+                text-align: left !important;
+                margin-bottom: 16px;
+            }
+            .collage-text-tr {
+                order: -1;
             }
             .featured-events { padding: 40px 5%; }
-            .event-bay { margin-bottom: 40px; }
+            .photo-strip-row {
+                flex-wrap: wrap;
+            }
+            .photo-strip-item {
+                flex: 1 1 45% !important;
+                height: 120px !important;
+            }
         }
     </style>
 </head>
@@ -507,39 +514,27 @@
     </div>
 </section>
 
-<!-- ===== FEATURED EVENTS ===== -->
+<!-- ===== FEATURED EVENTS (COLLAGE) ===== -->
 <section class="featured-events">
-
-    <!-- Bay Badminton Championships -->
-    <div class="event-bay">
-        <div class="event-images">
-            <div class="img-tall">
-                <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/34fb474d-da7b-4be1-b17a-fdeff2381345/DSC01991.jpeg?format=750w" alt="Bay Badminton Championships">
-            </div>
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/546f30a0-abab-4568-90df-fd3bd8cb6739/DSCF9944.jpeg?format=750w" alt="Tournament match">
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/8d41fd8c-035a-48e6-baae-b039b09cb9d9/_DSC3035.jpeg?format=750w" alt="Court action shot">
+    <div class="collage-container">
+        <div class="collage-photo collage-photo-1">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/34fb474d-da7b-4be1-b17a-fdeff2381345/DSC01991.jpeg?format=750w" alt="Bay Badminton Championships">
         </div>
-        <div class="event-info">
+        <div class="collage-photo collage-photo-2">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/53d00efd-1548-4dfe-86d5-cce8912af7ea/397613470_3525324764403034_4071029124127877228_n.jpg?format=750w" alt="Tournament match">
+        </div>
+        <div class="collage-photo collage-photo-3">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0adf295b-4f0a-4c6a-bad4-e33b294e6c46/_DSC2669.jpg?format=750w" alt="Riaan NJ Open action">
+        </div>
+        <div class="collage-text collage-text-bl">
             <h3>Bay Badminton Championships</h3>
             <p>USAB Sanctioned Event<br>Bay Badminton Center | Milpitas, CA</p>
         </div>
-    </div>
-
-    <!-- Riaan New Jersey Open -->
-    <div class="event-riaan">
-        <div class="event-info">
+        <div class="collage-text collage-text-tr">
             <h3>Riaan New Jersey Open</h3>
             <p>USAB Sanctioned Event<br>New Jersey Badminton Club | Montville, NJ</p>
         </div>
-        <div class="event-images">
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/53d00efd-1548-4dfe-86d5-cce8912af7ea/397613470_3525324764403034_4071029124127877228_n.jpg?format=750w" alt="Riaan NJ Open match">
-            <div class="img-tall">
-                <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0adf295b-4f0a-4c6a-bad4-e33b294e6c46/_DSC2669.jpg?format=750w" alt="Player action at Riaan NJ Open">
-            </div>
-            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/74bd56dd-ee78-4824-b12f-1686fef8b893/432310976_3608237619445081_8089464790847316209_n.jpg?format=750w" alt="Riaan NJ Open court">
-        </div>
     </div>
-
 </section>
 
 <!-- ===== TOURNAMENT CAROUSEL ===== -->
@@ -655,21 +650,38 @@
     </div>
 </section>
 
-<!-- ===== PHOTO GRID ===== -->
-<section class="photo-grid-section">
-    <div class="photo-grid">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/5b2eb423-f600-4aab-a153-90834c13c655/406186681_3543332289268948_6217540274298260496_n.jpg?format=500w" alt="Tournament action" loading="lazy">
-        <img class="span-wide" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/73605847-14ad-4dbe-9c82-5901bca7d723/DSCF7569.jpeg?format=750w" alt="Bay Badminton Championships 2022" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/8098bbb0-b8fe-4ec0-bc9e-62789e1e6c06/406527242_3543332212602289_5311253242496514703_n.jpg?format=500w" alt="Match in progress" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/13ebc8f9-698c-4764-9ade-0c99d94816db/406528567_3543332025935641_6251116489723505069_n.jpg?format=500w" alt="Player portrait" loading="lazy">
-        <img class="span-wide" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/7a87cb92-2b71-4d45-8836-bef77d3b4b02/407168302_3543331962602314_4495638092207088797_n.jpg?format=750w" alt="Tournament scene" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0b1863c2-0551-40ab-8a53-5a32dd386fce/406580892_3543337265935117_4174310790367080942_n.jpg?format=500w" alt="Player action" loading="lazy">
-        <img class="span-wide" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/1b9860a6-9ac9-4012-bb74-40ed786964db/319752860_3308071889461657_2249930531670848207_n+%281%29.jpeg?format=750w" alt="Bay Badminton Championships" loading="lazy">
-        <img class="span-wide" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/4e536e9a-b3f9-4077-a3e5-6db3659f3d1a/DSCF2325.jpeg?format=750w" alt="Austin Open 2022" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b908e89b-6fd7-456c-b871-9f0034559bf5/DSCF0478.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/dd74082d-61e4-4267-9deb-5e6cb5e61f67/DSC01979.jpeg?format=500w" alt="Polar Bear LXVII" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/e719926a-f001-4931-b854-2c99055546c4/_DSC5112.jpeg?format=500w" alt="Spring Davis Open 2023" loading="lazy">
-        <img class="span-wide" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/9525671e-0926-4612-988e-30b4c0faa83a/Screenshot+2024-08-06+at+4.54.17+PM.png?format=750w" alt="Tournament doubles" loading="lazy">
+<!-- ===== PHOTO STRIPS ===== -->
+<div class="photo-strips-chevron"></div>
+<section class="photo-strips-section">
+    <div class="photo-strips">
+        <!-- Row 1: 7 photos -->
+        <div class="photo-strip-row" style="height:200px">
+            <div class="photo-strip-item" style="flex:0.55"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/74bd56dd-ee78-4824-b12f-1686fef8b893/432310976_3608237619445081_8089464790847316209_n.jpg?format=500w" alt="Riaan NJ Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/73605847-14ad-4dbe-9c82-5901bca7d723/DSCF7569.jpeg?format=750w" alt="Bay Badminton Championships 2022" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/8098bbb0-b8fe-4ec0-bc9e-62789e1e6c06/406527242_3543332212602289_5311253242496514703_n.jpg?format=500w" alt="Match in progress" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.72"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/13ebc8f9-698c-4764-9ade-0c99d94816db/406528567_3543332025935641_6251116489723505069_n.jpg?format=500w" alt="Player portrait" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.68"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/e719926a-f001-4931-b854-2c99055546c4/_DSC5112.jpeg?format=500w" alt="Spring Davis Open 2023" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.48"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/7a87cb92-2b71-4d45-8836-bef77d3b4b02/407168302_3543331962602314_4495638092207088797_n.jpg?format=750w" alt="Tournament scene" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/4e536e9a-b3f9-4077-a3e5-6db3659f3d1a/DSCF2325.jpeg?format=750w" alt="Austin Open 2022" loading="lazy"></div>
+        </div>
+        <!-- Row 2: 5 photos -->
+        <div class="photo-strip-row" style="height:190px">
+            <div class="photo-strip-item" style="flex:0.68"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0b1863c2-0551-40ab-8a53-5a32dd386fce/406580892_3543337265935117_4174310790367080942_n.jpg?format=500w" alt="Player action" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/1b9860a6-9ac9-4012-bb74-40ed786964db/319752860_3308071889461657_2249930531670848207_n+%281%29.jpeg?format=750w" alt="Bay Badminton Championships" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.49"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/e82787d4-2207-48fe-b87a-9b394bbce749/DSCF7362.jpeg?format=750w" alt="Match action" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.54"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/c8d1f680-91a1-426c-95e0-b2f1643f958d/d.jpeg?format=750w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.70"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b908e89b-6fd7-456c-b871-9f0034559bf5/DSCF0478.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+        </div>
+        <!-- Row 3: 7 photos -->
+        <div class="photo-strip-row" style="height:170px">
+            <div class="photo-strip-item" style="flex:0.60"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/dd74082d-61e4-4267-9deb-5e6cb5e61f67/DSC01979.jpeg?format=500w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.62"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/34fb474d-da7b-4be1-b17a-fdeff2381345/DSC01991.jpeg?format=500w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/df58bc9e-a3a0-406e-9ae3-283fade99fb3/_DSC2835.jpeg?format=750w" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.44"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/53d00efd-1548-4dfe-86d5-cce8912af7ea/397613470_3525324764403034_4071029124127877228_n.jpg?format=750w" alt="Riaan NJ Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.67"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/546f30a0-abab-4568-90df-fd3bd8cb6739/DSCF9944.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.46"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b1337128-b9e7-48fd-a777-ffcc4b32e42d/_DSC5132.jpeg?format=750w" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.67"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/ab5ff9f4-02ca-49ab-b88d-ae596c60c521/319761674_3308071742795005_6507703687300235295_n.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+        </div>
     </div>
 </section>
 
