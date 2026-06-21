@@ -122,6 +122,21 @@
         .featured-events {
             padding: 60px 5% 80px;
         }
+        .featured-events {
+            padding: 60px 20% 80px;
+        }
+        @media (max-width: 759px) {
+            .collage-text {
+                /* padding-top: 20px; */
+                margin-top: -5%;
+                margin-bottom: -5%;
+            }
+        }
+        @media (max-width: 1300px) {
+            .featured-events {
+                padding: 60px 10% 80px;
+            }
+        }
         .collage-container {
             position: relative;
             max-width: 1200px;
@@ -283,19 +298,27 @@
 
         /* ===== ABOUT SECTION ===== */
         .about-section {
-            padding: 80px 5%;
+            padding: 80px clamp(10%, 20vw, 20%);
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 60px;
             align-items: start;
         }
+        @media (max-width: 1300px) {
+            .about-section {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+        }
         .about-left {}
         .about-left .about-photo {
             width: 100%;
-            max-width: 280px;
+            max-width: none;
             border-radius: 30px 0 0 0;
             object-fit: cover;
             margin-bottom: 32px;
+            object-position: top 30%;
+            max-height: 360px;
         }
 
         /* Accordion */
