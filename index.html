@@ -139,29 +139,29 @@
             object-fit: cover;
         }
         .collage-photo-1 {
-            left: 8%;
+            left: 0;
             top: 0;
-            width: 22%;
-            height: 78%;
-            z-index: 1;
-        }
-        .collage-photo-2 {
-            left: 26%;
-            top: 18%;
-            width: 35%;
-            height: 52%;
+            width: 29%;
+            height: 57%;
             z-index: 2;
         }
-        .collage-photo-3 {
-            right: 8%;
-            bottom: 0;
-            width: 28%;
-            height: 55%;
+        .collage-photo-2 {
+            left: 25%;
+            top: 24%;
+            width: 50%;
+            height: 48%;
             z-index: 3;
+        }
+        .collage-photo-3 {
+            right: 0;
+            top: 52%;
+            width: 37%;
+            height: 43%;
+            z-index: 4;
         }
         .collage-text {
             position: absolute;
-            z-index: 4;
+            z-index: 5;
         }
         .collage-text h3 {
             font-family: var(--font-heading);
@@ -187,12 +187,37 @@
 
         /* ===== TOURNAMENT CAROUSEL ===== */
         .tournaments-section {
-            background: var(--color-dark-bg);
+            position: relative;
             padding: 80px 0;
             overflow: hidden;
         }
+        .tournaments-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .tournaments-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: liquidWave 12s ease-in-out infinite;
+        }
+        .tournaments-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        @keyframes liquidWave {
+            0%, 100% { transform: scale(1.05) translateY(0); filter: blur(2px); }
+            25% { transform: scale(1.08) translateY(-1%) translateX(0.5%); filter: blur(3px); }
+            50% { transform: scale(1.06) translateY(0.5%) translateX(-0.5%); filter: blur(2px); }
+            75% { transform: scale(1.09) translateY(-0.5%) translateX(0.3%); filter: blur(3px); }
+        }
         .carousel-wrapper {
             position: relative;
+            z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 60px;
@@ -527,6 +552,9 @@
 
 <!-- ===== TOURNAMENT CAROUSEL ===== -->
 <section class="tournaments-section">
+    <div class="tournaments-bg">
+        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0adf295b-4f0a-4c6a-bad4-e33b294e6c46/_DSC2669.jpg?format=1500w" alt="" loading="lazy">
+    </div>
     <div class="carousel-wrapper">
         <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous tournaments">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
