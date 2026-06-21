@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emily Yu</title>
+    <meta name="description" content="Athlete-turned photographer, based in Northern California.">
+    <meta property="og:site_name" content="Emily Yu">
+    <meta property="og:title" content="Emily Yu">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Athlete-turned photographer, based in Northern California.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Franklin:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://images.squarespace-cdn.com">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --font-heading: 'Libre Franklin', 'Franklin Gothic Medium', sans-serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --color-bg: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-muted: #555;
+            --color-dark-bg: #2a2a2a;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            text-align: center;
+            padding: 48px 24px 24px;
+        }
+        .site-header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* ===== TAGLINE ===== */
+        .tagline {
+            text-align: center;
+            padding: 0 24px 32px;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+
+        /* ===== HERO GALLERY REEL ===== */
+        .gallery-reel {
+            position: relative;
+            width: 100%;
+            height: 71vh;
+            overflow: hidden;
+            background: #111;
+        }
+        .gallery-reel-list {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .gallery-reel-item {
+            flex: 0 0 auto;
+            height: 100%;
+            overflow: hidden;
+        }
+        .gallery-reel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .gallery-reel-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            padding: 0 12px;
+        }
+        .gallery-reel-btn {
+            pointer-events: auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.7);
+            background: rgba(0,0,0,0.3);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .gallery-reel-btn:hover { background: rgba(0,0,0,0.6); }
+        .gallery-reel-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ===== FEATURED EVENTS (COLLAGE) ===== */
+        .featured-events {
+            padding: 60px 5% 80px;
+        }
+        .collage-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 540px;
+        }
+        .collage-photo {
+            position: absolute;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .collage-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .collage-photo-1 {
+            left: 0;
+            top: 0;
+            width: 29%;
+            height: 57%;
+            z-index: 2;
+        }
+        .collage-photo-1 img {
+            object-position: center 0%;
+        }
+        .collage-photo-2 {
+            left: 25%;
+            top: 24%;
+            width: 50%;
+            height: 48%;
+            z-index: 3;
+        }
+        .collage-photo-3 {
+            right: 0;
+            top: 52%;
+            width: 37%;
+            height: 43%;
+            z-index: 4;
+        }
+        .collage-text {
+            position: absolute;
+            z-index: 5;
+        }
+        .collage-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .collage-text p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+        .collage-text-bl {
+            bottom: 8%;
+            left: 3%;
+        }
+        .collage-text-tr {
+            top: 5%;
+            right: 3%;
+            text-align: right;
+        }
+
+        /* ===== TOURNAMENT CAROUSEL ===== */
+        .tournaments-section {
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        .tournaments-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .tournaments-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: liquidWave 12s ease-in-out infinite;
+        }
+        .tournaments-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        @keyframes liquidWave {
+            0%, 100% { transform: scale(1.05) translateY(0); filter: blur(2px); }
+            25% { transform: scale(1.08) translateY(-1%) translateX(0.5%); filter: blur(3px); }
+            50% { transform: scale(1.06) translateY(0.5%) translateX(-0.5%); filter: blur(2px); }
+            75% { transform: scale(1.09) translateY(-0.5%) translateX(0.3%); filter: blur(3px); }
+        }
+        .carousel-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .carousel-card {
+            flex: 0 0 calc(33.333% - 16px);
+            background: #f5f5f5;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .carousel-card:hover { transform: translateY(-4px); }
+        .carousel-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        .carousel-card h3 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            padding: 16px;
+            color: var(--color-text);
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        .carousel-btn:hover { background: rgba(255,255,255,0.25); }
+        .carousel-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+        }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .about-left {}
+        .about-left .about-photo {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 30px 0 0 0;
+            object-fit: cover;
+            margin-bottom: 32px;
+        }
+
+        /* Accordion */
+        .accordion {}
+        .accordion-item {
+            border-top: 1px solid #ddd;
+        }
+        .accordion-item:last-child {
+            border-bottom: 1px solid #ddd;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-align: left;
+        }
+        .accordion-icon {
+            position: relative;
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--color-text);
+            transition: transform 0.3s;
+        }
+        .accordion-icon::before {
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            transform: translateY(-50%);
+        }
+        .accordion-icon::after {
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            transform: translateX(-50%);
+        }
+        .accordion-item.open .accordion-icon::after {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-item.open .accordion-body {
+            max-height: 200px;
+        }
+        .accordion-body p {
+            padding-bottom: 20px;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        .about-right {}
+        .about-right p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            color: var(--color-text-muted);
+        }
+        .about-right blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
+            margin: 32px 0;
+            color: var(--color-text);
+            line-height: 1.5;
+        }
+        .about-right .contact-text {
+            margin-top: 24px;
+        }
+        .about-right .contact-text a {
+            text-decoration: underline;
+        }
+
+        /* ===== PHOTO STRIPS ===== */
+        .photo-strips-section {
+            background: #e8e8e8;
+            padding: 100px 16px 60px;
+            position: relative;
+        }
+        .photo-strips-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            z-index: 1;
+        }
+        .photo-strips {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .photo-strip-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+        .photo-strip-item {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .photo-strip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .collage-container {
+                height: 400px;
+            }
+            .collage-text h3 {
+                font-size: 1rem;
+            }
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .carousel-card {
+                flex: 0 0 calc(50% - 12px);
+            }
+        }
+        @media (max-width: 600px) {
+            .gallery-reel { height: 50vh; }
+            .carousel-card {
+                flex: 0 0 calc(100% - 0px);
+            }
+            .featured-events { padding: 40px 5%; }
+            .collage-container {
+                height: 300px;
+            }
+            .collage-text h3 {
+                font-size: 0.85rem;
+            }
+            .collage-text p {
+                font-size: 0.75rem;
+            }
+            .photo-strip-row {
+                flex-wrap: wrap;
+            }
+            .photo-strip-item {
+                flex: 1 1 45% !important;
+                height: 120px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+    <h1>Emily Yu</h1>
+</header>
+
+<!-- ===== TAGLINE ===== -->
+<p class="tagline">As an athlete-turned photographer, I see with the players.</p>
+
+<!-- ===== HERO GALLERY REEL ===== -->
+<section class="gallery-reel" aria-label="Photo gallery slideshow">
+    <div class="gallery-reel-list" id="reelList">
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/26754757-8021-4bf3-bd35-f3a09e5f877e/A9_00903.jpg?format=1500w" alt="Badminton player mid-air smash" loading="eager">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/1c3ea349-4be5-46a2-b7c6-25f96d9fd0ac/A9_03572.jpg?format=1500w" alt="Badminton match action shot" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/85e51cba-2c3f-4ed0-95fd-d0be0f63bf74/A9_07289.jpg?format=1500w" alt="Badminton player reaching for shot" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/fc6e8163-588d-4541-a508-a73017d204bc/A9_09397.jpg?format=1500w" alt="Tournament match action" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/3520ab4f-f8fd-48b3-a155-854d0f1c9a3d/A9_02429.jpg?format=1500w" alt="Tournament doubles match" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/fd0e1c52-c805-4b2c-824e-9cacda6b76a0/A9_03711.jpg?format=1500w" alt="Player in action at tournament" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/eb65d604-8ffa-47e5-868b-9d46d9a9f236/5.jpg?format=1500w" alt="Badminton player portrait" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/9f54a691-7673-4cf0-89f9-d4e70cb3b9ba/A9_01505.jpg?format=1500w" alt="Player action shot" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b6b6e644-e7a8-4fae-8622-2a96e1c9c98c/A9_09417.jpg?format=1500w" alt="Tournament scene" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/12d93bc0-bc3a-478f-addc-547205ae37d6/A9_00817.jpg?format=1500w" alt="Match in progress" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/47373ad8-8fa3-4a9c-b487-c93b3671a029/A9_06304.jpg?format=1500w" alt="Tournament action" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/dd452404-8864-4bca-8010-c2000e14a48a/A9_01613.jpg?format=1500w" alt="Players at badminton event" loading="lazy">
+        </figure>
+        <figure class="gallery-reel-item" style="flex-basis: auto; width: auto;">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/8696bd6b-6fd4-47b5-98ca-60761fc0728a/A9_06044.jpg?format=1500w" alt="Badminton court action" loading="lazy">
+        </figure>
+    </div>
+    <div class="gallery-reel-controls">
+        <button class="gallery-reel-btn" id="reelPrev" aria-label="Previous slide">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="gallery-reel-btn" id="reelNext" aria-label="Next slide">
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+    </div>
+</section>
+
+<!-- ===== FEATURED EVENTS (COLLAGE) ===== -->
+<section class="featured-events">
+    <div class="collage-container">
+        <div class="collage-photo collage-photo-1">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/5c27a32f-e135-4d0a-b683-107cf5e5b104/Screenshot+2024-08-06+at+5.04.33+PM.png?format=750w" alt="Bay Badminton Championships">
+        </div>
+        <div class="collage-photo collage-photo-2">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/d53af2d4-0f15-4486-b723-6466d1a41b46/406268172_3543332365935607_3116563468856555956_n.jpg?format=750w" alt="Tournament match">
+        </div>
+        <div class="collage-photo collage-photo-3">
+            <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/5b2eb423-f600-4aab-a153-90834c13c655/406186681_3543332289268948_6217540274298260496_n.jpg?format=750w" alt="Riaan NJ Open action">
+        </div>
+        <div class="collage-text collage-text-bl">
+            <h3>Bay Badminton Championships</h3>
+            <p>USAB Sanctioned Event<br>Bay Badminton Center | Milpitas, CA</p>
+        </div>
+        <div class="collage-text collage-text-tr">
+            <h3>Riaan New Jersey Open</h3>
+            <p>USAB Sanctioned Event<br>New Jersey Badminton Club | Montville, NJ</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TOURNAMENT CAROUSEL ===== -->
+<section class="tournaments-section">
+    <div class="tournaments-bg">
+        <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0adf295b-4f0a-4c6a-bad4-e33b294e6c46/_DSC2669.jpg?format=1500w" alt="" loading="lazy">
+    </div>
+    <div class="carousel-wrapper">
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous tournaments">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div style="overflow: hidden;">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/4dd0dd36-0dd0-4968-9316-baa49e25dd7b/Screenshot+2024-08-06+at+4.48.34+PM.png?format=500w" alt="Washington Open 2024">
+                    <h3>Washington Open 2024</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/2c229792-ab32-43c4-8d1b-3955f7d53cdb/Screenshot+2024-08-06+at+4.49.18+PM.png?format=500w" alt="NCBC Spring Open 2024">
+                    <h3>NCBC Spring Open 2024</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/f3872d4a-eecc-498c-b87d-3c11537526eb/A9_03471.jpg?format=500w" alt="SJSU Spring Smashoff 2023">
+                    <h3>SJSU Spring Smashoff 2023</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/199869b8-d037-47f4-9b1a-d7f65f2fefc8/_DSC5112.jpg?format=500w" alt="UC Davis Spring Open 2023">
+                    <h3>UC Davis Spring Open 2023</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/c774c974-2705-4483-9a1d-b053384eb288/_DSC5906.jpg?format=500w" alt="Dave Freeman Open 2023">
+                    <h3>Dave Freeman Open 2023</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/cf3e604a-6705-426c-8688-0243c824f2f7/DSC01991.jpg?format=500w" alt="UC Berkeley Polar Bear LXVII">
+                    <h3>UC Berkeley Polar Bear LXVII</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/084f3439-68e2-45a7-829f-2acb6fc1cfa0/DSCF7860.jpg?format=500w" alt="Bay Badminton Championships 2022">
+                    <h3>Bay Badminton Championships 2022</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/a2920fba-e0ba-4d32-b522-af7ebe33f68e/315550890_3285654185036761_3976401740174698452_n.jpg?format=500w" alt="UCLA Bruin Open 2022">
+                    <h3>UCLA Bruin Open 2022</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/eb08d4fe-ea7e-4d83-822d-0bde9c89a689/306763222_3232660480336132_1497766741128723445_n.jpg?format=500w" alt="UC Berkeley Polar Bear LXVI">
+                    <h3>UC Berkeley Polar Bear LXVI</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b586ab01-0e24-4d74-bfa9-6001b3a3ed22/288604020_3168069400128574_4243263548246465832_n.jpg?format=500w" alt="Davis Spring Open 2022">
+                    <h3>Davis Spring Open 2022</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/60efc25c-1110-471e-9907-a7d9f5b6b63b/281361636_3144521445816703_5964261305789353184_n.jpg?format=500w" alt="Riaan Open 2022">
+                    <h3>Riaan Open 2022</h3>
+                </div>
+                <div class="carousel-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/9b38cf64-6113-4e49-9da0-548357613707/279879753_3137477653187749_5950283500360681928_n.jpg?format=500w" alt="Anteater Championships 2022">
+                    <h3>Anteater Championships 2022</h3>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Next tournaments">
+            <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+    </div>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="about-section">
+    <div class="about-left">
+        <img class="about-photo" src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/4e6ad9b5-6e88-43ce-9f1a-21d3dc1003dc/Screenshot+2023-10-11+at+2.43.26+PM.png?format=500w" alt="Emily Yu with badminton racket">
+
+        <div class="accordion">
+            <div class="accordion-item open">
+                <button class="accordion-header" aria-expanded="true">
+                    <span>2022</span>
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-body">
+                    <p>UW Husky Open, Dave Freeman, UCI Anteater Collegiate, Riaan NJ Open, UC Davis Spring Open, UC Berkeley LXVI, UCLA Bruin Open, Bay Badminton Championships</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>2023</span>
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-body">
+                    <p>Dave Freeman, UC Davis Spring Open, SJSU Spring Smashoff, Riaan NJ Open, NCBC Fall Open, Bay Badminton Championships</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>2024</span>
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-body">
+                    <p>NCBC Spring Open, Washington Open</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-right">
+        <p>My badminton journey began at Synergy Badminton Academy in Menlo Park. As an adult, my love for the game has guided me back to a place that I love and to this day, I continue competing while giving back to the community I love.</p>
+        <p>I started taking photos in my spare time at tournaments while competing but it quickly grew into something more than that. Since then, I've worked with USAB events and shot for 10+ tournaments across the States, from the Bay Badminton Championships in Milpitas, CA to the Riaan New Jersey Open in New Jersey, NJ.</p>
+
+        <blockquote>"It may be a hobby for you, but it is memories for us."</blockquote>
+
+        <p>If you're running a tournament, I'd love to work with you to capture your moments.</p>
+        <p>I look forward to hearing from you - for projects, for feedback, or even just to talk badminton.</p>
+        <p>emilyyu1030[at]gmail[dot]com</p>
+        <p class="contact-text">Portfolio @ <a href="https://www.facebook.com/emily.yu.77920526/photos_albums" target="_blank" rel="noopener">Facebook</a> / Contact @ <a href="https://www.instagram.com/emilyyu1030" target="_blank" rel="noopener">Instagram</a></p>
+    </div>
+</section>
+
+<!-- ===== PHOTO STRIPS ===== -->
+<section class="photo-strips-section">
+    <div class="photo-strips">
+        <!-- Row 1: 7 photos -->
+        <div class="photo-strip-row" style="height:200px">
+            <div class="photo-strip-item" style="flex:0.55"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/74bd56dd-ee78-4824-b12f-1686fef8b893/432310976_3608237619445081_8089464790847316209_n.jpg?format=500w" alt="Riaan NJ Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/73605847-14ad-4dbe-9c82-5901bca7d723/DSCF7569.jpeg?format=750w" alt="Bay Badminton Championships 2022" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/8098bbb0-b8fe-4ec0-bc9e-62789e1e6c06/406527242_3543332212602289_5311253242496514703_n.jpg?format=500w" alt="Match in progress" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.72"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/13ebc8f9-698c-4764-9ade-0c99d94816db/406528567_3543332025935641_6251116489723505069_n.jpg?format=500w" alt="Player portrait" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.68"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/e719926a-f001-4931-b854-2c99055546c4/_DSC5112.jpeg?format=500w" alt="Spring Davis Open 2023" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.48"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/7a87cb92-2b71-4d45-8836-bef77d3b4b02/407168302_3543331962602314_4495638092207088797_n.jpg?format=750w" alt="Tournament scene" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/4e536e9a-b3f9-4077-a3e5-6db3659f3d1a/DSCF2325.jpeg?format=750w" alt="Austin Open 2022" loading="lazy"></div>
+        </div>
+        <!-- Row 2: 5 photos -->
+        <div class="photo-strip-row" style="height:190px">
+            <div class="photo-strip-item" style="flex:0.68"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/0b1863c2-0551-40ab-8a53-5a32dd386fce/406580892_3543337265935117_4174310790367080942_n.jpg?format=500w" alt="Player action" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/1b9860a6-9ac9-4012-bb74-40ed786964db/319752860_3308071889461657_2249930531670848207_n+%281%29.jpeg?format=750w" alt="Bay Badminton Championships" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.49"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/e82787d4-2207-48fe-b87a-9b394bbce749/DSCF7362.jpeg?format=750w" alt="Match action" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.54"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/c8d1f680-91a1-426c-95e0-b2f1643f958d/d.jpeg?format=750w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.70"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b908e89b-6fd7-456c-b871-9f0034559bf5/DSCF0478.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+        </div>
+        <!-- Row 3: 7 photos -->
+        <div class="photo-strip-row" style="height:170px">
+            <div class="photo-strip-item" style="flex:0.60"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/dd74082d-61e4-4267-9deb-5e6cb5e61f67/DSC01979.jpeg?format=500w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.62"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/34fb474d-da7b-4be1-b17a-fdeff2381345/DSC01991.jpeg?format=500w" alt="Polar Bear LXVII" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/df58bc9e-a3a0-406e-9ae3-283fade99fb3/_DSC2835.jpeg?format=750w" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.44"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/53d00efd-1548-4dfe-86d5-cce8912af7ea/397613470_3525324764403034_4071029124127877228_n.jpg?format=750w" alt="Riaan NJ Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.67"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/546f30a0-abab-4568-90df-fd3bd8cb6739/DSCF9944.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.46"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/b1337128-b9e7-48fd-a777-ffcc4b32e42d/_DSC5132.jpeg?format=750w" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.67"><img src="https://images.squarespace-cdn.com/content/v1/62b42ced2b57300e4bfa66b3/ab5ff9f4-02ca-49ab-b88d-ae596c60c521/319761674_3308071742795005_6507703687300235295_n.jpeg?format=500w" alt="Bay Badminton Championships" loading="lazy"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+    // ===== HERO GALLERY REEL =====
+    const reelList = document.getElementById('reelList');
+    const reelItems = reelList.querySelectorAll('.gallery-reel-item');
+    let reelIndex = 0;
+
+    function getReelItemWidth() {
+        const containerWidth = reelList.parentElement.offsetWidth;
+        const reelHeight = reelList.parentElement.offsetHeight;
+        const items = [];
+        reelItems.forEach(item => {
+            const img = item.querySelector('img');
+            const natW = img.naturalWidth || 3000;
+            const natH = img.naturalHeight || 2000;
+            const ratio = natW / natH;
+            const w = reelHeight * ratio;
+            items.push(Math.max(w, 200));
+        });
+        return items;
+    }
+
+    function updateReel() {
+        const widths = getReelItemWidth();
+        let offset = 0;
+        for (let i = 0; i < reelIndex; i++) {
+            offset += widths[i];
+        }
+        reelList.style.transform = 'translateX(-' + offset + 'px)';
+    }
+
+    document.getElementById('reelPrev').addEventListener('click', function () {
+        reelIndex = Math.max(0, reelIndex - 1);
+        updateReel();
+    });
+    document.getElementById('reelNext').addEventListener('click', function () {
+        reelIndex = Math.min(reelItems.length - 1, reelIndex + 1);
+        updateReel();
+    });
+
+    // Auto-advance hero reel
+    setInterval(function () {
+        reelIndex = (reelIndex + 1) % reelItems.length;
+        updateReel();
+    }, 5000);
+
+    // ===== TOURNAMENT CAROUSEL =====
+    const carouselTrack = document.getElementById('carouselTrack');
+    const cards = carouselTrack.querySelectorAll('.carousel-card');
+    let carouselPos = 0;
+
+    function getVisibleCards() {
+        const w = window.innerWidth;
+        if (w <= 600) return 1;
+        if (w <= 900) return 2;
+        return 3;
+    }
+
+    function updateCarousel() {
+        const visible = getVisibleCards();
+        const maxPos = Math.max(0, cards.length - visible);
+        carouselPos = Math.min(carouselPos, maxPos);
+        const gap = 24;
+        const cardWidth = (carouselTrack.parentElement.offsetWidth - gap * (visible - 1)) / visible;
+        const offset = carouselPos * (cardWidth + gap);
+        carouselTrack.style.transform = 'translateX(-' + offset + 'px)';
+    }
+
+    document.getElementById('carouselPrev').addEventListener('click', function () {
+        carouselPos = Math.max(0, carouselPos - 1);
+        updateCarousel();
+    });
+    document.getElementById('carouselNext').addEventListener('click', function () {
+        const visible = getVisibleCards();
+        const maxPos = Math.max(0, cards.length - visible);
+        carouselPos = Math.min(maxPos, carouselPos + 1);
+        updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    // ===== ACCORDION =====
+    document.querySelectorAll('.accordion-header').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var item = btn.closest('.accordion-item');
+            var isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(function (i) {
+                i.classList.remove('open');
+                i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+            });
+            // Toggle clicked
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
