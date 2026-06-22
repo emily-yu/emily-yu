@@ -154,29 +154,102 @@
         }
 
         .resume-link {
+            margin: 0;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             margin-top: 2rem;
         }
-        .resume-link a {
+        .resume-link a,
+        .photography-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--accent);
             text-decoration: none;
             font-size: 0.875rem;
             font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.02em;
             padding: 0.6rem 1.2rem;
-            border: 1px solid var(--accent);
             border-radius: 4px;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        .resume-link a {
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
         .resume-link a:hover {
             background: var(--accent);
             color: var(--bg-primary);
         }
-        .resume-link a svg {
+        .resume-link a svg,
+        .photography-link svg {
             width: 14px;
             height: 14px;
+        }
+        .photography-link {
+            color: var(--text-primary);
+            border: 1px solid var(--text-muted);
+        }
+        .photography-link svg {
+            color: var(--accent);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .photography-link:hover {
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
+            background: var(--text-primary);
+        }
+        .photography-link:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* --- Photography handoff --- */
+        .photography-transition {
+            --wipe-x: 50vw;
+            --wipe-y: 50vh;
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            display: grid;
+            place-items: center;
+            background: #ffffff;
+            color: #1a1a1a;
+            clip-path: circle(0 at var(--wipe-x) var(--wipe-y));
+            pointer-events: none;
+            transition: clip-path 0.82s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .photography-transition-content {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.34s ease 0.3s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+        }
+        .photography-transition-name {
+            font-size: clamp(1.15rem, 2vw, 1.5rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        .photography-transition-label {
+            color: #555;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+        }
+        body.is-transitioning .photography-transition {
+            clip-path: circle(150vmax at var(--wipe-x) var(--wipe-y));
+        }
+        body.is-transitioning .photography-transition-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        body.is-transitioning .page {
+            opacity: 0.25;
+            transform: translateX(-18px);
+            transition-delay: 0s;
         }
 
         /* --- Responsive --- */
@@ -193,6 +266,22 @@
             .links {
                 gap: 1.2rem;
             }
+            .actions {
+                gap: 0.65rem;
+            }
+            .resume-link a,
+            .photography-link {
+                padding-inline: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
@@ -203,6 +292,13 @@
 
     <div class="bg-shape" id="bg"></div>
 
+    <div class="photography-transition" id="photographyTransition" aria-hidden="true">
+        <div class="photography-transition-content">
+            <!-- <span class="photography-transition-name">Emily Yu</span> -->
+            <span class="photography-transition-label">photography</span>
+        </div>
+    </div>
+
     <main class="page" id="page">
         <div class="content">
             <h1>Emily Yu</h1>
@@ -212,12 +308,20 @@
                 <a href="https://www.linkedin.com/in/emilyyu3/">linkedin</a>
                 <a href="mailto:eyudeveloper@gmail.com">email</a>
             </nav>
-            <div class="resume-link">
-                <a href="Emily Yu - Fullstack Engineer - 2026.pdf">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
+            <div class="actions">
+                <div class="resume-link">
+                    <a href="Emily Yu - Fullstack Engineer - 2026.pdf">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
+                        </svg>
+                        resume
+                    </a>
+                </div>
+                <a class="photography-link" id="photographyLink" href="photography/index.html">
+                    photography
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"/>
                     </svg>
-                    resume
                 </a>
             </div>
         </div>
@@ -230,6 +334,34 @@
                 document.getElementById('page').classList.add('visible');
                 document.getElementById('bg').classList.add('visible');
             }, 800);
+        });
+
+        var photographyLink = document.getElementById('photographyLink');
+        var photographyTransition = document.getElementById('photographyTransition');
+
+        photographyLink.addEventListener('click', function (event) {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            event.preventDefault();
+            if (document.body.classList.contains('is-transitioning')) return;
+
+            var bounds = photographyLink.getBoundingClientRect();
+            var originX = event.clientX || bounds.left + bounds.width / 2;
+            var originY = event.clientY || bounds.top + bounds.height / 2;
+            photographyTransition.style.setProperty('--wipe-x', originX + 'px');
+            photographyTransition.style.setProperty('--wipe-y', originY + 'px');
+            photographyTransition.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('is-transitioning');
+
+            window.setTimeout(function () {
+                window.location.href = photographyLink.href;
+            }, 880);
+        });
+
+        window.addEventListener('pageshow', function () {
+            document.body.classList.remove('is-transitioning');
+            photographyTransition.setAttribute('aria-hidden', 'true');
         });
     </script>
 </body>
