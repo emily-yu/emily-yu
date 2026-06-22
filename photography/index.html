@@ -441,12 +441,75 @@
         .photo-strip-item {
             overflow: hidden;
             border-radius: 4px;
+            cursor: zoom-in;
         }
         .photo-strip-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.25s ease, filter 0.25s ease;
+        }
+        .photo-strip-item:hover img,
+        .photo-strip-item:focus-visible img {
+            transform: scale(1.025);
+            filter: brightness(0.92);
+        }
+        .photo-strip-item:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: -5px;
+        }
+
+        /* ===== FULL PHOTO MODAL ===== */
+        .photo-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+            background: rgba(8, 8, 8, 0.94);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        .photo-modal.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .photo-modal-image {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: min(94vw, 1800px);
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+        }
+        .photo-modal-close {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 1;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            font: 300 30px/1 var(--font-body);
+            cursor: pointer;
+        }
+        .photo-modal-close:hover,
+        .photo-modal-close:focus-visible {
+            background: rgba(255, 255, 255, 0.16);
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+        body.modal-open {
+            overflow: hidden;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -701,7 +764,7 @@
             <div class="photo-strip-item" style="flex:1.50"><img src="assets/images/photo-strips/row-01/DSCF7569.jpeg" alt="Bay Badminton Championships 2022" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:1.50"><img src="assets/images/photo-strips/row-01/406527242_3543332212602289_5311253242496514703_n.jpg" alt="Match in progress" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:0.72"><img src="assets/images/photo-strips/row-01/406528567_3543332025935641_6251116489723505069_n.jpg" alt="Player portrait" loading="lazy"></div>
-            <div class="photo-strip-item" style="flex:0.68"><img src="assets/images/photo-strips/row-01/_DSC5112.jpeg" alt="Spring Davis Open 2023" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:0.68"><img src="assets/images/photo-strips/row-01/DSC5112.jpeg" alt="Spring Davis Open 2023" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:1.48"><img src="assets/images/photo-strips/row-01/407168302_3543331962602314_4495638092207088797_n.jpg" alt="Tournament scene" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:1.50"><img src="assets/images/photo-strips/row-01/DSCF2325.jpeg" alt="Austin Open 2022" loading="lazy"></div>
         </div>
@@ -717,14 +780,19 @@
         <div class="photo-strip-row" style="height:170px">
             <div class="photo-strip-item" style="flex:0.60"><img src="assets/images/photo-strips/row-03/DSC01979.jpeg" alt="Polar Bear LXVII" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:0.62"><img src="assets/images/photo-strips/row-03/DSC01991.jpeg" alt="Polar Bear LXVII" loading="lazy"></div>
-            <div class="photo-strip-item" style="flex:1.50"><img src="assets/images/photo-strips/row-03/_DSC2835.jpeg" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.50"><img src="assets/images/photo-strips/row-03/DSC2835.jpeg" alt="Spring Davis Open" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:1.44"><img src="assets/images/photo-strips/row-03/397613470_3525324764403034_4071029124127877228_n.jpg" alt="Riaan NJ Open" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:0.67"><img src="assets/images/photo-strips/row-03/DSCF9944.jpeg" alt="Bay Badminton Championships" loading="lazy"></div>
-            <div class="photo-strip-item" style="flex:1.46"><img src="assets/images/photo-strips/row-03/_DSC5132.jpeg" alt="Spring Davis Open" loading="lazy"></div>
+            <div class="photo-strip-item" style="flex:1.46"><img src="assets/images/photo-strips/row-03/DSC5132.jpeg" alt="Spring Davis Open" loading="lazy"></div>
             <div class="photo-strip-item" style="flex:0.67"><img src="assets/images/photo-strips/row-03/319761674_3308071742795005_6507703687300235295_n.jpeg" alt="Bay Badminton Championships" loading="lazy"></div>
         </div>
     </div>
 </section>
+
+<div class="photo-modal" id="photoModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Full-size gallery photo">
+    <button class="photo-modal-close" id="photoModalClose" type="button" aria-label="Close full-size photo">&times;</button>
+    <img class="photo-modal-image" id="photoModalImage" src="" alt="">
+</div>
 
 <script>
 (function () {
@@ -823,6 +891,54 @@
                 btn.setAttribute('aria-expanded', 'true');
             }
         });
+    });
+
+    // ===== FINAL GALLERY PHOTO MODAL =====
+    const photoModal = document.getElementById('photoModal');
+    const photoModalImage = document.getElementById('photoModalImage');
+    const photoModalClose = document.getElementById('photoModalClose');
+    const finalGalleryItems = document.querySelectorAll('.photo-strips-section .photo-strip-item');
+    let lastFocusedGalleryItem = null;
+
+    function openPhotoModal(item) {
+        const image = item.querySelector('img');
+        lastFocusedGalleryItem = item;
+        photoModalImage.src = image.currentSrc || image.src;
+        photoModalImage.alt = image.alt;
+        photoModal.classList.add('is-open');
+        photoModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        photoModalClose.focus();
+    }
+
+    function closePhotoModal() {
+        if (!photoModal.classList.contains('is-open')) return;
+        photoModal.classList.remove('is-open');
+        photoModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        photoModalImage.removeAttribute('src');
+        if (lastFocusedGalleryItem) lastFocusedGalleryItem.focus();
+    }
+
+    finalGalleryItems.forEach(function (item) {
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-label', 'View ' + item.querySelector('img').alt + ' full size');
+        item.addEventListener('click', function () { openPhotoModal(item); });
+        item.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openPhotoModal(item);
+            }
+        });
+    });
+
+    photoModalClose.addEventListener('click', closePhotoModal);
+    photoModal.addEventListener('click', function (event) {
+        if (event.target === photoModal) closePhotoModal();
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closePhotoModal();
     });
 })();
 </script>
